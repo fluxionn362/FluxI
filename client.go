@@ -38,9 +38,11 @@ close:
 				break close
 			}
 			messgae += string(buff[:len])
-			fmt.Println(messgae)
+			if strings.Contains(messgae, EOS) {
+				clsmsg := strings.Replace(messgae, EOS, "", -1)
+				fmt.Println(clsmsg)
+			}
 		}
-		fmt.Println(messgae)
 	}
 }
 
@@ -54,3 +56,4 @@ func main() {
 	go clientOutput(conn)
 	clientInput(conn)
 }
+
